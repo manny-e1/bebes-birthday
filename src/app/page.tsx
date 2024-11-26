@@ -90,7 +90,7 @@ export default function Home() {
 					<h1 className="text-4xl sm:text-7xl font-extrabold ">
 						Happy Birthday Bebe! 🎉
 					</h1>
-					<h3 className="text-xl">You're loved and appreciated</h3>
+					<h3 className="text-xl">You&apos;re loved and appreciated</h3>
 				</div>
 				{!permissionGranted && (
 					<button
