@@ -44,7 +44,9 @@ export default function Home() {
 	React.useEffect(() => {
 		return () => {
 			if (audioStream) {
-				audioStream.getTracks().forEach((track) => track.stop());
+				for (const track of audioStream.getTracks()) {
+					track.stop();
+				}
 			}
 			if (audioContext) {
 				audioContext.close();
@@ -110,6 +112,7 @@ export default function Home() {
 					</button>
 				)}
 
+				<p className="w-full flex justify-center">Blow on the screen</p>
 				<div
 					className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-10 sm:gap-12 mb-8 sm:mb-12 p-4 sm:p-8 bg-white/5 rounded-2xl"
 					id="candles-container"
