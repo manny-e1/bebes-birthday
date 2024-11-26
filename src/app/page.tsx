@@ -112,7 +112,9 @@ export default function Home() {
 					</button>
 				)}
 
-				<p className="w-full flex justify-center">Blow on the screen</p>
+				<p className="w-full flex justify-center text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">
+					Blow on the screen
+				</p>
 				<div
 					className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-10 sm:gap-12 mb-8 sm:mb-12 p-4 sm:p-8 bg-white/5 rounded-2xl"
 					id="candles-container"
