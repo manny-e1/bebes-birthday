@@ -59,11 +59,9 @@ export default function Home() {
 			if (!analyzer) return false;
 			const dataArray = new Uint8Array(analyzer.frequencyBinCount);
 			analyzer.getByteFrequencyData(dataArray);
-			// Calculate average volume with more weight on lower frequencies
 			const average = dataArray.slice(0, 100).reduce((a, b) => a + b) / 100;
 
 			if (average > 50) {
-				// Lowered threshold for better sensitivity
 				const container = document.getElementById("candles-container");
 				const flames = Array.from(container?.querySelectorAll(".flame") || []);
 
@@ -72,11 +70,18 @@ export default function Home() {
 					flames[randomIndex].remove();
 
 					if (flames.length === 1) {
+						if (audioStream) {
+							for (const track of audioStream.getTracks()) {
+								track.stop();
+							}
+						}
+						if (audioContext) {
+							audioContext.close();
+						}
 						const audio = document.getElementById(
 							"birthday-song",
 						) as HTMLAudioElement;
 						if (audio) {
-							// For mobile devices: play with user interaction
 							const playPromise = audio.play();
 							if (playPromise !== undefined) {
 								playPromise.catch((error) => {
