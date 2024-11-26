@@ -70,9 +70,17 @@ export default function Home() {
 					flames[randomIndex].remove();
 
 					if (flames.length === 1) {
-						const audio = document.getElementById("birthday-song");
-						if (audio instanceof HTMLAudioElement) {
-							audio.play();
+						const audio = document.getElementById(
+							"birthday-song",
+						) as HTMLAudioElement;
+						if (audio) {
+							// For mobile devices: play with user interaction
+							const playPromise = audio.play();
+							if (playPromise !== undefined) {
+								playPromise.catch((error) => {
+									console.error("Audio playback failed:", error);
+								});
+							}
 						}
 					}
 				}
@@ -116,7 +124,12 @@ export default function Home() {
 					))}
 				</div>
 
-				<audio id="birthday-song" src="/friendship.mp3" className="w-full">
+				<audio
+					id="birthday-song"
+					src="/friendship.mp3"
+					className="w-full"
+					preload="auto"
+				>
 					<track kind="captions" />
 				</audio>
 			</div>
